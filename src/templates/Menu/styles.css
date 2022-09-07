@@ -18,7 +18,7 @@
 }
 
 .menu__item {
-  background-color: #1C3879;
+  background-color: #dc143c;
   color: white;
   position: relative;
   width: 120px;
@@ -31,7 +31,7 @@
 }
 
 .menu__item:hover {
-  background-color: #607EAA;
+  background-color: #eb1f48;
 }
 
 .menu__item--icon {
