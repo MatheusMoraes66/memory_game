@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { duplicateRegenerateSortArray } from "../../utils/cards";
 import { Card, CardProps } from "../Card";
+import { PopUp } from "../PopUp";
 import './styles.css'
 export interface GridProps {
   cards: CardProps[];
@@ -10,6 +11,7 @@ export interface GridProps {
 export function Grid({cards}:GridProps)  {
   const [matches, setMatches] = useState(0);
   const [moves, setMoves] = useState(0);
+  const [showModal, setShowModal] = useState(false);
   const [stateCards, setStateCards] = useState(() => {
     return duplicateRegenerateSortArray(cards)
   })
@@ -24,6 +26,12 @@ export function Grid({cards}:GridProps)  {
     setMoves(0)
     clearState()
   }
+
+  useEffect(()=> {
+    if(matches === 8){
+      setShowModal(true)
+    }
+  },[matches])
 
   const handleClick = (id: string) => {
     const newStateCards = stateCards.map((card)=> {
@@ -45,6 +53,7 @@ export function Grid({cards}:GridProps)  {
         second.current = card;
       }
 
+
       if(first.current && second.current){
         setMoves(moves + 1);
         if(first.current.back === second.current.back){
@@ -55,6 +64,7 @@ export function Grid({cards}:GridProps)  {
           unflip.current = true;
         }
       }
+
       return card
     })
     setStateCards(newStateCards)
@@ -67,13 +77,14 @@ export function Grid({cards}:GridProps)  {
   }
 return <>
 <div className="text">
-  <p>Moves: {moves} | Matches: {matches} | <button onClick={() => handleReset()} className="btn">Reset</button> <button onClick={() => navigate(-1)} className="btn">Return</button></p>
+  <p>Moves: {moves} | <button onClick={() => handleReset()} className="btn">Reset</button> <button onClick={() => navigate(-1)} className="btn">Return</button></p>
 </div>
 <div className="grid">
   {stateCards.map(card => {
     return <Card {...card} key={card.id} handleClick={handleClick} />
   })}
 </div>
+{showModal ? <PopUp setShowModal={setShowModal} count={moves}/> : null}
 </> 
 
 }
