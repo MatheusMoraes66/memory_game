@@ -1,0 +1,11 @@
+.app {
+  max-width: 640px;
+  min-width: 320px;
+  margin: 0 auto;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px 10px 0px;
+}

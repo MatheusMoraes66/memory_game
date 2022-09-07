@@ -1,0 +1,43 @@
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.menu__description {
+  margin: 10px 0px 40px 0px;
+}
+
+.menu__items {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  gap: 10px;
+  width: 100%;
+}
+
+.menu__item {
+  background-color: #1C3879;
+  color: white;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.menu__item:hover {
+  background-color: #607EAA;
+}
+
+.menu__item--icon {
+  font-size: 50px;
+}
+
+.menu__item--text {
+  text-transform: uppercase;
+}
