@@ -14,17 +14,14 @@ export function Menu({choice}:MenuProps) {
   const handlerClick = (id: Number) => {
     if(choice){
       if(id === 0){
-        console.log(fruts)
           choice(fruts)
       }
 
       if(id === 1){
-        console.log(foods)
         choice(foods)
       }
 
       if(id === 2){
-        console.log(animal);
         choice(animal)
       }
       navigate("/game");
