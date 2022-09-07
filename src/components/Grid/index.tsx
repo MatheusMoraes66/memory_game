@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { duplicateRegenerateSortArray } from "../../utils/cards";
 import { Card, CardProps } from "../Card";
 import './styles.css'
@@ -12,7 +13,7 @@ export function Grid({cards}:GridProps)  {
   const [stateCards, setStateCards] = useState(() => {
     return duplicateRegenerateSortArray(cards)
   })
-
+  const navigate = useNavigate();
   const first = useRef<CardProps | null>(null);
   const second = useRef<CardProps | null>(null);
   const unflip = useRef(false);
@@ -66,7 +67,7 @@ export function Grid({cards}:GridProps)  {
   }
 return <>
 <div className="text">
-  <p>Moves: {moves} | Matches: {matches} | <button onClick={() => handleReset()} className="btn">Reset</button></p>
+  <p>Moves: {moves} | Matches: {matches} | <button onClick={() => handleReset()} className="btn">Reset</button> <button onClick={() => navigate(-1)} className="btn">Return</button></p>
 </div>
 <div className="grid">
   {stateCards.map(card => {
