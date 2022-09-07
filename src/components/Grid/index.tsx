@@ -56,8 +56,6 @@ export function Grid({cards}:GridProps)  {
       }
       return card
     })
-
-    console.log(newStateCards)
     setStateCards(newStateCards)
   }
 
