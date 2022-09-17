@@ -28,10 +28,13 @@ export function Grid({cards}:GridProps)  {
   }
 
   useEffect(()=> {
+    if(matches === 0){
+      setStateCards(duplicateRegenerateSortArray(cards))
+    }
     if(matches === 8){
       setShowModal(true)
     }
-  },[matches])
+  },[matches, cards])
 
   const handleClick = (id: string) => {
     const newStateCards = stateCards.map((card)=> {
@@ -77,7 +80,7 @@ export function Grid({cards}:GridProps)  {
   }
 return <>
 <div className="text">
-  <p>Moves: {moves} | <button onClick={() => handleReset()} className="btn">Reset</button> <button onClick={() => navigate(-1)} className="btn">Return</button></p>
+  <p>Moves: {moves} | <button onClick={() => handleReset()} className="btn">Reset</button> <button onClick={() => navigate("/")} className="btn">Return</button></p>
 </div>
 <div className="grid">
   {stateCards.map(card => {
